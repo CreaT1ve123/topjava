@@ -18,9 +18,10 @@ public class MealServlet extends HttpServlet {
 
     private static final Logger log = getLogger(MealServlet.class);
 
-    private List<MealWithExceed> mealWithExceedList = MealsUtil.getFilteredWithExceeded(MealsUtil.meals, LocalTime.of(0, 0), LocalTime.of(23, 59), 2000);
+    private List<MealWithExceed> mealWithExceedList;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        mealWithExceedList = MealsUtil.getFilteredWithExceeded(MealsUtil.meals, LocalTime.of(0, 0), LocalTime.of(23, 59), 2000);
         log.debug("redirect to meals");
 
         request.setAttribute("mealList", mealWithExceedList);
